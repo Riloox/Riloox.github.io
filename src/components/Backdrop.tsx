@@ -3,7 +3,7 @@ import ParticleField from './ParticleField';
 /**
  * Fixed page atmosphere: floodlight gradients (CSS), an animated particle
  * field of "floodlight motes", faint football-pitch line art tying the page
- * to Falta Uno, and a film-grain overlay.
+ * to the featured work, and a film-grain overlay.
  */
 const Backdrop = () => (
   <>

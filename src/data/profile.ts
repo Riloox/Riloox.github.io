@@ -36,7 +36,7 @@ export const ui: Record<
     copied: string;
     downloadCv: string;
     emailMe: string;
-    seeFaltaUno: string;
+    seeHostkind: string;
     letsTalk: string;
     footerNote: string;
     updatedRepo: string;
@@ -67,7 +67,7 @@ export const ui: Record<
     copied: 'Copied!',
     downloadCv: 'Download CV',
     emailMe: 'Email me',
-    seeFaltaUno: 'See Falta Uno live',
+    seeHostkind: 'See Hostkind live',
     letsTalk: "Let's talk",
     footerNote: 'React · TypeScript · Vite',
     updatedRepo: 'updated',
@@ -97,7 +97,7 @@ export const ui: Record<
     copied: '¡Copiado!',
     downloadCv: 'Descargar CV',
     emailMe: 'Escribime',
-    seeFaltaUno: 'Ver Falta Uno en vivo',
+    seeHostkind: 'Ver Hostkind en vivo',
     letsTalk: 'Hablemos',
     footerNote: 'React · TypeScript · Vite',
     updatedRepo: 'actualizado',
@@ -123,7 +123,7 @@ export const heroContent: Record<
     firstName: 'Federico',
     lastName: 'Prunell',
       summary:
-        'Backend engineer with experience as a Software Development Analyst at Bantotal, writing Java services for core banking. Triaged and resolved 50+ incidents. After hours I ship Falta Uno: a live React 19 + TypeScript + Express platform with a real ELO rating engine.',
+        'Backend engineer with experience as a Software Development Analyst at Bantotal, writing Java services for core banking. Triaged and resolved 50+ incidents. After hours I ship Hostkind: an open-source, self-hosted control plane for game servers and long-running processes.',
     marquee: [
       'Java',
       'TypeScript',
@@ -144,7 +144,7 @@ export const heroContent: Record<
     firstName: 'Federico',
     lastName: 'Prunell',
       summary:
-        'Ingeniero backend con experiencia como Analista de Desarrollo de Software en Bantotal, escribiendo servicios Java para core bancario. Atendí y resolví más de 50 incidentes. Fuera de hora desarrollo Falta Uno: una plataforma en producción con React 19 + TypeScript + Express y un motor de rating ELO real. Inglés C2, listo para remoto.',
+        'Ingeniero backend con experiencia como Analista de Desarrollo de Software en Bantotal, escribiendo servicios Java para core bancario. Atendí y resolví más de 50 incidentes. Fuera de hora desarrollo Hostkind: un panel de control open source y autoalojado para servidores de juegos y procesos de larga duración. Inglés C2, listo para remoto.',
     marquee: [
       'Java',
       'TypeScript',
@@ -183,49 +183,51 @@ export interface FeaturedProject {
   links: ProjectLink;
 }
 
-export const faltaUno: Record<LanguageKey, FeaturedProject> = {
+export const hostkind: Record<LanguageKey, FeaturedProject> = {
   en: {
-    name: 'Falta Uno',
-    tagline: 'Pickup-football platform with a real rating engine',
+    name: 'Hostkind',
+    tagline: 'Every server. One self-hosted control plane.',
     description:
-      'A football pickup-match organizer for Uruguay & Argentina, live in production. Under the hood: an ELO rating engine with placement matches and k-factor scaling, a team-balancing algorithm that respects friend groups, and a vote-consensus state machine that applies rating updates idempotently.',
+      'An open-source control plane for game servers and long-running processes. It combines process supervision, live WebSocket consoles, health metrics, file operations, backups, schedules, users, roles, and an audit trail in one local application.',
     stats: [
-      { value: '10.8k', label: 'lines of TypeScript' },
-      { value: '123', label: 'conventional commits' },
-      { value: '6', label: 'tested domains, unit + integration' },
-      { value: '1', label: 'security audit — run, then fixed' },
+      { value: '1', label: 'Node.js process' },
+      { value: '3', label: 'desktop platforms' },
+      { value: '0', label: 'cloud accounts required' },
+      { value: 'AGPL', label: 'open-source edition' },
     ],
     features: [
-      'Full match lifecycle: create → join → play → vote result → ELO updates',
-      'Team balancing by rating, friend-group aware, with manual override',
-      'Vote-consensus result engine with idempotent ELO application',
-      'Hardened: helmet, CORS, rate limiting, bcrypt, Supabase JWT auth',
+      'Start, stop, restart, and monitor multiple servers from one deck',
+      'Stream live consoles and send commands over WebSocket',
+      'Schedule backups and maintenance with restore and retention workflows',
+      'Local users, roles, audit logging, and crash-recovery state in SQLite',
     ],
-    stack: ['React 19', 'TypeScript', 'Express', 'Drizzle ORM', 'PostgreSQL', 'Tailwind 4', 'Capacitor'],
+    stack: ['Node.js 22', 'React', 'Express', 'WebSocket', 'SQLite', 'Electron', 'Vite'],
     links: {
-      demo: 'https://faltauno.onrender.com/',
+      demo: 'https://hostkind.site/',
+      repo: 'https://github.com/Riloox/hostkind-open',
     },
   },
   es: {
-    name: 'Falta Uno',
-    tagline: 'Plataforma de fútbol 5 con un motor de rating real',
+    name: 'Hostkind',
+    tagline: 'Todos tus servidores. Un solo panel autoalojado.',
     description:
-      'Un organizador de partidos de fútbol para Uruguay y Argentina, en producción. Por dentro: un motor de rating ELO con partidos de colocación y k-factor escalado, un algoritmo de balanceo de equipos que respeta grupos de amigos, y una máquina de estados de consenso por votos que aplica los cambios de rating de forma idempotente.',
+      'Un panel de control open source para servidores de juegos y procesos de larga duración. Reúne supervisión de procesos, consolas en vivo por WebSocket, métricas, archivos, backups, tareas programadas, usuarios, roles y auditoría en una aplicación local.',
     stats: [
-      { value: '10.8k', label: 'líneas de TypeScript' },
-      { value: '123', label: 'commits convencionales' },
-      { value: '6', label: 'dominios testeados, unit + integración' },
-      { value: '1', label: 'auditoría de seguridad — hecha y corregida' },
+      { value: '1', label: 'proceso Node.js' },
+      { value: '3', label: 'plataformas de escritorio' },
+      { value: '0', label: 'cuentas cloud requeridas' },
+      { value: 'AGPL', label: 'edición open source' },
     ],
     features: [
-      'Ciclo completo del partido: crear → unirse → jugar → votar resultado → ELO',
-      'Balanceo de equipos por rating, consciente de grupos de amigos, con override manual',
-      'Motor de resultados por consenso de votos con aplicación idempotente de ELO',
-      'Endurecido: helmet, CORS, rate limiting, bcrypt, auth JWT con Supabase',
+      'Iniciar, detener, reiniciar y monitorear varios servidores desde un solo panel',
+      'Transmitir consolas en vivo y enviar comandos por WebSocket',
+      'Programar backups y mantenimiento con restauración y políticas de retención',
+      'Usuarios locales, roles, auditoría y recuperación de operaciones con SQLite',
     ],
-    stack: ['React 19', 'TypeScript', 'Express', 'Drizzle ORM', 'PostgreSQL', 'Tailwind 4', 'Capacitor'],
+    stack: ['Node.js 22', 'React', 'Express', 'WebSocket', 'SQLite', 'Electron', 'Vite'],
     links: {
-      demo: 'https://faltauno.onrender.com/',
+      demo: 'https://hostkind.site/',
+      repo: 'https://github.com/Riloox/hostkind-open',
     },
   },
 };

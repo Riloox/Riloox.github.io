@@ -4,7 +4,7 @@ import { PANELS, clampCamera, fitPanel, fittedScale, resetCamera, zoomAtPointer,
 import TubeVortex from './components/TubeVortex';
 import YoutubeEmbed from './components/YoutubeEmbed';
 import MagneticButton from './components/MagneticButton';
-import { certifications, contact, education, experience, faltaUno, heroContent, projects, skills, ui, type LanguageKey } from './data/profile';
+import { certifications, contact, education, experience, hostkind, heroContent, projects, skills, ui, type LanguageKey } from './data/profile';
 import { useGithubProjects } from './hooks/useGithubProjects';
 import { iconFor } from './data/techIcons';
 
@@ -55,7 +55,7 @@ export default function App() {
   const suppressClick = useRef(false);
   const reduced = useReducedMotion();
   const repos = useGithubProjects(GITHUB, { limit: 6, excludeNames: ['picadito', 'freecam', 'personalWebpage'] });
-  const h = heroContent[language], fu = faltaUno[language], exp = experience[language][0], [cleta, freecam] = projects[language], cert = certifications[language], copy = ui[language], me = contact[language];
+  const h = heroContent[language], featured = hostkind[language], exp = experience[language][0], [cleta, freecam] = projects[language], cert = certifications[language], copy = ui[language], me = contact[language];
 
   useEffect(() => { document.documentElement.lang = 'en'; }, []);
   useEffect(() => { const resize = () => { const v = { width: innerWidth, height: innerHeight }; setViewport(v); setCamera(c => clampCamera(c, v)); }; addEventListener('resize', resize); return () => removeEventListener('resize', resize); }, []);
@@ -82,7 +82,7 @@ export default function App() {
     <TubeVortex pointer={pointer} />
     <div className="board" style={{ transform }}>
       <PortfolioPanel id="identity" title="IDENTITY"><div className="panel-content hero"><p className="eyebrow">{h.kicker}</p><h1><span><ScrambleText>{h.firstName}</ScrambleText></span><ScrambleText>{h.lastName}</ScrambleText></h1><p>{h.summary}</p><div className="ticker">{h.marquee.join(' · ')}</div></div></PortfolioPanel>
-      <PortfolioPanel id="falta-uno" title={copy.featured.toUpperCase()} className="featured"><div className="panel-content"><p className="eyebrow">01 / LIVE SYSTEM</p><h2>{fu.name}</h2><h3>{fu.tagline}</h3><p>{fu.description}</p><div className="stats">{fu.stats.map(s => <div key={s.label}><strong>{s.value}</strong><span>{s.label}</span></div>)}</div><ul>{fu.features.map(x => <li key={x}>{x}</li>)}</ul><div className="tags">{fu.stack.map(x => <span key={x}>{x}</span>)}</div><MagneticButton className="action" href={fu.links.demo} target="_blank" rel="noreferrer">{copy.liveDemo} ↗</MagneticButton></div></PortfolioPanel>
+      <PortfolioPanel id="falta-uno" title={copy.featured.toUpperCase()} className="featured"><div className="panel-content"><p className="eyebrow">01 / OPEN SOURCE</p><h2>{featured.name}</h2><h3>{featured.tagline}</h3><p>{featured.description}</p><div className="stats">{featured.stats.map(s => <div key={s.label}><strong>{s.value}</strong><span>{s.label}</span></div>)}</div><ul>{featured.features.map(x => <li key={x}>{x}</li>)}</ul><div className="tags">{featured.stack.map(x => <span key={x}>{x}</span>)}</div><div className="links"><MagneticButton className="action" href={featured.links.demo} target="_blank" rel="noreferrer">{copy.liveDemo} ↗</MagneticButton><a href={featured.links.repo} target="_blank" rel="noreferrer">GitHub ↗</a></div></div></PortfolioPanel>
       <PortfolioPanel id="experience" title={copy.sections.experience.toUpperCase()}><div className="panel-content"><h2>{exp.company}</h2><h3>{exp.role}</h3><p className="meta">{exp.duration}</p><ul>{exp.highlights.map(x => <li key={x}>{x}</li>)}</ul></div></PortfolioPanel>
       <PortfolioPanel id="freecam" title="FREECAM"><div className="panel-content project"><p className="eyebrow">02 / JAVA MOD</p><h2>{freecam.name}</h2><h3>{freecam.tagline}</h3><p>{freecam.description}</p><div className="tags">{freecam.stack.map(x => <span key={x}>{x}</span>)}</div><div className="links"><a href={freecam.links?.download} target="_blank" rel="noreferrer">{copy.downloadPage} ↗</a><a href={freecam.links?.repo} target="_blank" rel="noreferrer">GitHub ↗</a></div></div></PortfolioPanel>
       <PortfolioPanel id="cleta" title="CLETA"><div className="panel-content project cleta-grid"><div><p className="eyebrow">03 / UTEC CAPSTONE</p><h2>{cleta.name}</h2><h3>{cleta.tagline}</h3><p>{cleta.description}</p><ul>{cleta.highlights.map(x => <li key={x}>{x}</li>)}</ul><div className="tags">{cleta.stack.map(x => <span key={x}>{x}</span>)}</div></div>{cleta.links?.video && <YoutubeEmbed url={cleta.links.video} title="Cleta demo" />}</div></PortfolioPanel>

@@ -2,7 +2,7 @@ import GithubStrip from '../components/GithubStrip';
 import ProjectCard from '../components/ProjectCard';
 import Reveal from '../components/Reveal';
 import SectionHead from '../components/SectionHead';
-import { faltaUno, projects, ui, type LanguageKey } from '../data/profile';
+import { hostkind, projects, ui, type LanguageKey } from '../data/profile';
 
 interface WorkSectionProps {
   language: LanguageKey;
@@ -12,7 +12,7 @@ interface WorkSectionProps {
 
 const WorkSection = ({ language, githubUsername, githubExcludeNames }: WorkSectionProps) => {
   const t = ui[language];
-  const featured = faltaUno[language];
+  const featured = hostkind[language];
   const rest = projects[language];
 
   return (
@@ -20,7 +20,7 @@ const WorkSection = ({ language, githubUsername, githubExcludeNames }: WorkSecti
       <div className="fl-shell">
         <SectionHead index="01" title={t.sections.work} sub={t.sections.workSub} />
 
-        {/* Featured: Falta Uno */}
+        {/* Featured: Hostkind */}
         <Reveal>
           <article className="fl-featured">
             <span className="fl-featured-tag">{t.featured}</span>

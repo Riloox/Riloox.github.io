@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from 'motion/react';
 
 import MagneticButton from '../components/MagneticButton';
 import Marquee from '../components/Marquee';
-import { contact, cvFiles, heroContent, faltaUno, ui, type LanguageKey } from '../data/profile';
+import { contact, cvFiles, heroContent, hostkind, ui, type LanguageKey } from '../data/profile';
 
 interface HeroSectionProps {
   language: LanguageKey;
@@ -67,11 +67,11 @@ const HeroSection = ({ language, introDone }: HeroSectionProps) => {
         <motion.div className="fl-hero-ctas" {...rise(0.65)}>
           <MagneticButton
             className="fl-btn fl-btn-primary"
-            href={faltaUno[language].links.demo}
+            href={hostkind[language].links.demo}
             target="_blank"
             rel="noreferrer"
           >
-            {t.seeFaltaUno} <span className="arrow">↗</span>
+            {t.seeHostkind} <span className="arrow">↗</span>
           </MagneticButton>
           <a className="fl-btn fl-btn-ghost" href={cvFiles[language]} target="_blank" rel="noreferrer">
             {t.downloadCv}
