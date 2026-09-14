@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hostkind — Self-hosted control plane for game servers | Federico Prunell</title>
+    <meta
+      name="description"
+      content="Hostkind is an open-source, self-hosted control plane for game servers and long-running processes: process supervision, live consoles, metrics, backups, users, roles, and audit trail in one app."
+    />
+    <link rel="canonical" href="https://riloox.github.io/hostkind.html" />
+  </head>
+  <body>
+    <main>
+      <p><a href="/">← Back to Federico Prunell's portfolio</a></p>
+      <h1>Hostkind</h1>
+      <p>Every server. One self-hosted control plane.</p>
+      <h2>What problem it solves</h2>
+      <p>
+        Every game server ships a different control panel. Hostkind replaces
+        them with one local application: it combines process supervision, live
+        WebSocket consoles, health metrics, file operations, backups,
+        schedules, users, roles, and an audit trail for game servers and
+        long-running processes — with no cloud account required.
+      </p>
+      <p>
+        Try it live at <a href="https://hostkind.site/">hostkind.site</a> and
+        download installers from
+        <a href="https://github.com/Riloox/hostkind-open/releases">GitHub releases</a>.
+      </p>
+      <h2>Demo video</h2>
+      <p>
+        <a href="https://www.youtube.com/watch?v=P_3PwVGpmN0">Watch the Hostkind demo on YouTube</a>
+        (same video embedded on <a href="https://hostkind.site/">hostkind.site</a>).
+      </p>
+      <h2>Iteration lessons</h2>
+      <ul>
+        <li>
+          Stay in a single Node.js process: dropping Docker and external
+          services made installs, upgrades, and crash recovery simpler.
+        </li>
+        <li>
+          Track long-running operations in SQLite with safety snapshots and
+          restore/retention workflows, so interrupted work can be inspected
+          or recovered instead of lost.
+        </li>
+        <li>
+          Keep process management generic and push game specifics into
+          modules (Minecraft: Vanilla/Paper/Fabric/Forge; Palworld via
+          SteamCMD and loopback REST), so new games don't rewrite the core.
+        </li>
+      </ul>
+      <h2>Links</h2>
+      <ul>
+        <li><a href="https://hostkind.site/">Live site: hostkind.site</a></li>
+        <li><a href="https://github.com/Riloox/hostkind-open">Source code on GitHub</a></li>
+        <li><a href="https://github.com/Riloox/hostkind-open/releases">GitHub releases</a></li>
+        <li><a href="/">Federico Prunell — portfolio</a></li>
+      </ul>
+    </main>
+  </body>
+</html>
