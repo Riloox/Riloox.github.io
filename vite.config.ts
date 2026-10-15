@@ -1,4 +1,5 @@
 import { defineConfig, loadEnv } from 'vite';
+import { resolve } from 'node:path';
 import react from '@vitejs/plugin-react';
 
 const defaultProductionBase = '/';
@@ -15,6 +16,16 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     server: {
       port: 5173,
+    },
+    build: {
+      rollupOptions: {
+        // index.html stays the live homepage; the 3D vault terminal is a
+        // side route you can preview at /vault.html until you swap them.
+        input: {
+          main: resolve(__dirname, 'index.html'),
+          vault: resolve(__dirname, 'vault.html'),
+        },
+      },
     },
   };
 });
