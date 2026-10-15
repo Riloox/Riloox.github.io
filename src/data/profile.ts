@@ -119,11 +119,11 @@ export const heroContent: Record<
   }
 > = {
   en: {
-    kicker: 'Backend engineer — Montevideo, Uruguay · GMT-3',
+    kicker: 'Backend & AI agent infrastructure — Montevideo, Uruguay · GMT-3',
     firstName: 'Federico',
     lastName: 'Prunell',
       summary:
-        'Backend engineer with experience as a Software Development Analyst at Bantotal, writing Java services for core banking. Triaged and resolved 50+ incidents. After hours I ship Hostkind: an open-source, self-hosted control plane for game servers and long-running processes.',
+        'Backend engineer building infrastructure that people and AI agents run on. I ship Hostkind, an open-source, self-hosted control plane for long-running processes: supervision, live consoles, schedules, and audit trails. Before that, I was a Software Development Analyst at Bantotal, writing Java services for core banking and resolving 50+ incidents.',
     marquee: [
       'Java',
       'TypeScript',
@@ -140,11 +140,11 @@ export const heroContent: Record<
     ],
   },
   es: {
-    kicker: 'Ingeniero backend — Montevideo, Uruguay · GMT-3',
+    kicker: 'Backend e infraestructura para agentes de IA — Montevideo, Uruguay · GMT-3',
     firstName: 'Federico',
     lastName: 'Prunell',
       summary:
-        'Ingeniero backend con experiencia como Analista de Desarrollo de Software en Bantotal, escribiendo servicios Java para core bancario. Atendí y resolví más de 50 incidentes. Fuera de hora desarrollo Hostkind: un panel de control open source y autoalojado para servidores de juegos y procesos de larga duración. Inglés C2, listo para remoto.',
+        'Ingeniero backend que construye la infraestructura sobre la que corren personas y agentes de IA. Desarrollo Hostkind, un panel de control open source y autoalojado para procesos de larga duración: supervisión, consolas en vivo, tareas programadas y auditoría. Antes fui Analista de Desarrollo de Software en Bantotal, escribiendo servicios Java para core bancario y resolviendo más de 50 incidentes. Inglés C2, listo para remoto.',
     marquee: [
       'Java',
       'TypeScript',
@@ -471,7 +471,7 @@ export const contact: Record<
   en: {
     email: 'fprunell10@gmail.com',
     blurb:
-      'Open to backend / full-stack roles, remote or Montevideo-based.',
+      'Open to AI agent infrastructure and backend roles, remote or Montevideo-based.',
     responseTime: 'Usually replies within 24h',
     social: [
       { label: 'GitHub', url: 'https://github.com/Riloox' },
@@ -482,7 +482,7 @@ export const contact: Record<
   es: {
     email: 'fprunell10@gmail.com',
     blurb:
-      'Abierto a roles backend / full-stack, remoto o desde Montevideo.',
+      'Abierto a roles de infraestructura para agentes de IA y backend, remoto o desde Montevideo.',
     responseTime: 'Normalmente respondo en 24h',
     social: [
       { label: 'GitHub', url: 'https://github.com/Riloox' },
