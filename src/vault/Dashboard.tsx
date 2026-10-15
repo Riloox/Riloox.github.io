@@ -101,16 +101,18 @@ export function Dashboard({
             <p className="t-meta">{job.duration.split(' · ')[0]}</p>
           </Panel>
           <Panel id="projects" onOpen={onOpen} className="t-projects">
-            {[cleta, freecam].map(project => (
+            {[
+              { project: cleta, href: cleta.links?.video, label: 'Demo' },
+              { project: freecam, href: freecam.links?.repo, label: 'GitHub' },
+            ].map(({ project, href, label }) => (
               <div className="t-proj" key={project.name}>
-                <h2 className="t-title">{project.name}</h2>
+                <div className="t-proj-head">
+                  <h2 className="t-title">{project.name}</h2>
+                  {href && <Ext href={href}>{label}</Ext>}
+                </div>
                 <p className="t-copy">{project.tagline}</p>
               </div>
             ))}
-            <div className="t-actions">
-              {cleta.links?.video && <Ext href={cleta.links.video}>Demo</Ext>}
-              {freecam.links?.repo && <Ext href={freecam.links.repo}>GitHub</Ext>}
-            </div>
           </Panel>
         </div>
       </div>

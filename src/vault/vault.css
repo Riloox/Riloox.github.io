@@ -1542,16 +1542,18 @@ body {
   padding-bottom: 8px;
 }
 
-/* the buttons never clip: the project list gives up height first */
-.t-projects .t-proj {
-  flex: 0 1 auto;
-  min-height: 0;
-  overflow: hidden;
+/* each project's link rides on its title line, so no button row eats height */
+.t-proj-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
 }
 
-.t-projects .t-actions {
+.t-proj-head .t-btn {
   flex: none;
-  padding-top: 2px;
+  padding: 1px 7px;
+  font-size: 10px;
 }
 
 .hh-room::after {
