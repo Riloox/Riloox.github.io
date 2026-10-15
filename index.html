@@ -3,16 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#050705" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <script>
-      // Set the document language before paint so screen readers and
-      // translators see the stored preference, not the hardcoded default.
-      try {
-        var l = localStorage.getItem('riloox-lang');
-        if (l === 'en' || l === 'es') document.documentElement.lang = l;
-      } catch (e) {}
-    </script>
     <link rel="canonical" href="https://riloox.github.io/" />
 
     <title>Federico Prunell — Backend Software Developer | Java · Python · Cloud</title>
@@ -21,9 +13,12 @@
       content="Backend engineer with experience at Bantotal building Java services for core banking. Creator of Hostkind, an open-source control plane for game servers and long-running processes. Open to backend / full-stack roles, remote-friendly."
     />
 
-    <!-- Preconnect to font CDN to shave the render-blocking request -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=IBM+Plex+Mono:wght@400;500;600;700&family=Permanent+Marker&display=swap" />
+    <link rel="preload" as="image" href="/vault/room.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/vault/resident.webp" />
+
     <!-- Open Graph -->
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="Federico Prunell" />
@@ -37,7 +32,6 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="es_ES" />
     <meta property="profile:first_name" content="Federico" />
     <meta property="profile:last_name" content="Prunell" />
     <meta property="profile:username" content="Riloox" />
@@ -91,9 +85,9 @@
       <h1>Federico Prunell — Backend Software Developer</h1>
       <p>
         Backend engineer with experience at Bantotal building Java services for
-        core banking. Creator of Hostkind, an open-source control plane for
-        game servers and long-running processes. Open to backend / full-stack
-        roles, remote-friendly.
+        core banking. Creator of Hostkind, an open-source control plane for game
+        servers and long-running processes. Open to backend / full-stack roles,
+        remote-friendly.
       </p>
       <ul>
         <li><a href="mailto:fprunell10@gmail.com">fprunell10@gmail.com</a></li>
@@ -110,6 +104,6 @@
         <a href="/hostkind.html">About Hostkind</a>
       </p>
     </noscript>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main-vault.tsx"></script>
   </body>
 </html>

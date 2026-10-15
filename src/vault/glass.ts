@@ -18,6 +18,8 @@ export interface GlassFrame {
 export interface Glass {
   render: (frame: GlassFrame) => void;
   resize: (width: number, height: number) => void;
+  /** Scales the canvas resolution: 1 is full, lower trades sharpness for GPU time. */
+  setQuality: (quality: number) => void;
   dispose: () => void;
 }
 
@@ -243,6 +245,11 @@ export function createGlass(canvas: HTMLCanvasElement, residentSrc: string): Gla
     resize(width, height) {
       res.set(width, height);
       renderer.setSize(width, height, false);
+    },
+    setQuality(quality) {
+      // the shaders map gl_FragCoord back to css px through uDpr, so the two move together
+      shared.uDpr.value = dpr * quality;
+      renderer.setPixelRatio(dpr * quality);
     },
     dispose() {
       quad.geometry.dispose();

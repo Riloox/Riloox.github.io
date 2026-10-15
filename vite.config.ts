@@ -19,11 +19,11 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       rollupOptions: {
-        // index.html stays the live homepage; the 3D vault terminal is a
-        // side route you can preview at /vault.html until you swap them.
+        // index.html is the Shelter 23 vault terminal; classic.html keeps the
+        // previous portfolio reachable as a fallback.
         input: {
           main: resolve(__dirname, 'index.html'),
-          vault: resolve(__dirname, 'vault.html'),
+          classic: resolve(__dirname, 'classic.html'),
         },
       },
     },

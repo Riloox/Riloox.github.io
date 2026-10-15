@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useGithubProjects } from '../hooks/useGithubProjects';
 import { Dashboard } from './Dashboard';
-import type { Glass } from './glass';
+import type { Glass, GlassFrame } from './glass';
+import { createPacer } from './pacing';
 import { SectionBody } from './SectionView';
 import { BUTTONS, DESIGN, NOTE, PLATE, RESIDENT, SCREEN_MATRIX3D, focusView, overviewView } from './scene';
 import { SECTIONS, isSectionId, type SectionId } from './sections';
@@ -15,6 +16,10 @@ const PARALLAX_BLEED = 28;
 
 /** From the overview, the file's console button lights this long before the screen switches. */
 const PRESS_MS = 140;
+
+/** After the camera is placed, the glass re-measures the room for this long: the longest
+    camera transition in vault.css (1.2s) plus a margin. */
+const CAMERA_SETTLE_MS = 1300;
 
 const BOOT_LOG = [
   'ATOMLINE INDUSTRIES (R) DEEPLINE TERMINAL v2.3',
@@ -61,6 +66,8 @@ export default function VaultApp() {
   const fileHeadingRef = useRef<HTMLHeadingElement>(null);
   const returnFocusRef = useRef<SectionId | null>(null);
   const powerRef = useRef(0);
+  /** When the camera last moved; the glass loop only reads layout while it settles. */
+  const cameraMovedRef = useRef(0);
 
   const [phase, setPhase] = useState<Phase>('loading');
   const [bootStep, setBootStep] = useState(0);
@@ -177,6 +184,7 @@ export default function VaultApp() {
     const stage = stageRef.current;
     const resident = residentRef.current;
     if (!host || !stage || !resident) return;
+    cameraMovedRef.current = performance.now();
     const { width, height } = host.getBoundingClientRect();
     // Overview frames a viewport inflated by PARALLAX_BLEED on every side, so pointer
     // parallax (room ±7/5px, resident another ±16/9px) never drags a plate edge into view.
@@ -238,28 +246,47 @@ export default function VaultApp() {
     let raf = 0;
     let disposed = false;
     let power = 0;
-    let last = performance.now();
-    const start = last;
+    const start = performance.now();
+    const pacer = createPacer(start);
+    let quality = pacer.quality;
+    let view: Pick<GlassFrame, 'stage' | 'resident'> | null = null;
     let lastKey = '';
+
+    const measure = (): Pick<GlassFrame, 'stage' | 'resident'> => {
+      const hostBox = host.getBoundingClientRect();
+      const s = stage.getBoundingClientRect();
+      const r = resident.getBoundingClientRect();
+      return {
+        stage: { scale: s.width / PLATE.w, x: s.left - hostBox.left, y: s.top - hostBox.top },
+        resident: { x: r.left - hostBox.left, y: r.top - hostBox.top, w: r.width, h: r.height },
+      };
+    };
 
     const loop = (now: number) => {
       raf = requestAnimationFrame(loop);
       if (!glass) return;
-      const dt = Math.min(0.1, (now - last) / 1000);
-      last = now;
+      const dt = pacer.frame(now);
+      if (dt === null) return;
+      if (pacer.quality !== quality) {
+        quality = pacer.quality;
+        if (!quality) {
+          // this GPU can't keep up: fall back to the painted room alone
+          cancelAnimationFrame(raf);
+          glass.dispose();
+          glass = null;
+          setGlassOn(false);
+          return;
+        }
+        glass.setQuality(quality);
+        lastKey = '';
+      }
       power += (powerRef.current - power) * Math.min(1, dt * 2.2);
-      const hostBox = host.getBoundingClientRect();
-      const s = stage.getBoundingClientRect();
-      const r = resident.getBoundingClientRect();
-      const frame = {
-        stage: { scale: s.width / PLATE.w, x: s.left - hostBox.left, y: s.top - hostBox.top },
-        resident: { x: r.left - hostBox.left, y: r.top - hostBox.top, w: r.width, h: r.height },
-        power,
-        time: reduced ? 4.2 : (now - start) / 1000,
-      };
+      // reading layout every frame is costly; the room only moves while the camera settles
+      if (!view || now - cameraMovedRef.current < CAMERA_SETTLE_MS) view = measure();
+      const frame = { ...view, power, time: reduced ? 4.2 : (now - start) / 1000 };
       if (reduced) {
         // static film: only redraw when something actually moved
-        const key = `${frame.stage.scale}|${frame.stage.x}|${frame.stage.y}|${r.left}|${r.top}|${power.toFixed(3)}`;
+        const key = `${view.stage.scale}|${view.stage.x}|${view.stage.y}|${view.resident.x}|${view.resident.y}|${power.toFixed(3)}`;
         if (key === lastKey) return;
         lastKey = key;
       }
@@ -269,14 +296,15 @@ export default function VaultApp() {
     const resize = () => {
       const box = host.getBoundingClientRect();
       glass?.resize(box.width, box.height);
+      view = null;
       lastKey = '';
     };
     const observer = new ResizeObserver(resize);
 
     const onVisibility = () => {
       cancelAnimationFrame(raf);
-      if (!document.hidden) {
-        last = performance.now();
+      if (!document.hidden && glass) {
+        pacer.resume(performance.now());
         raf = requestAnimationFrame(loop);
       }
     };
