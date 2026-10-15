@@ -3,7 +3,7 @@ import { useGithubProjects } from '../hooks/useGithubProjects';
 import { Dashboard } from './Dashboard';
 import type { Glass } from './glass';
 import { SectionBody } from './SectionView';
-import { DESIGN, NOTE, PLATE, RESIDENT, SCREEN_MATRIX3D, focusView, overviewView } from './scene';
+import { BUTTONS, DESIGN, NOTE, PLATE, RESIDENT, SCREEN_MATRIX3D, focusView, overviewView } from './scene';
 import { SECTIONS, isSectionId, type SectionId } from './sections';
 import './vault.css';
 
@@ -12,6 +12,9 @@ const EXCLUDED = ['picadito', 'personalWebpage'];
 const ASSETS = `${import.meta.env.BASE_URL}vault/`;
 /** Overscan past each viewport edge; must exceed the largest pointer-parallax travel (23px). */
 const PARALLAX_BLEED = 28;
+
+/** From the overview, the file's console button lights this long before the screen switches. */
+const PRESS_MS = 140;
 
 const BOOT_LOG = [
   'ATOMLINE INDUSTRIES (R) DEEPLINE TERMINAL v2.3',
@@ -64,6 +67,8 @@ export default function VaultApp() {
   const [roomLoaded, setRoomLoaded] = useState(false);
   const [file, setFile] = useState<SectionId | null>(initialFile);
   const [glassOn, setGlassOn] = useState(false);
+  const [lamp, setLamp] = useState<{ id: SectionId; n: number } | null>(null);
+  const pressTimerRef = useRef(0);
 
   /* ------------------------------------------------------------ boot */
   useEffect(() => {
@@ -108,6 +113,25 @@ export default function VaultApp() {
     history.replaceState(null, '', location.pathname + location.search.replace(/[?&]focus=[^&]*/, ''));
   }, []);
 
+  /** From the overview the file's console button lights first; once reading, files just switch. */
+  const press = useCallback(
+    (id: SectionId) => {
+      if (file || handheld) {
+        openFile(id);
+        return;
+      }
+      if (pressTimerRef.current) return;
+      setLamp(current => ({ id, n: (current?.n ?? 0) + 1 }));
+      pressTimerRef.current = window.setTimeout(() => {
+        pressTimerRef.current = 0;
+        openFile(id);
+      }, PRESS_MS);
+    },
+    [file, handheld, openFile],
+  );
+
+  useEffect(() => () => window.clearTimeout(pressTimerRef.current), []);
+
   useEffect(() => {
     if (file) {
       fileHeadingRef.current?.focus({ preventScroll: true });
@@ -132,7 +156,7 @@ export default function VaultApp() {
       const target = event.target as HTMLElement;
       if (target.closest('input, textarea, [contenteditable]')) return;
       if (event.key >= '1' && event.key <= '8') {
-        openFile(SECTIONS[Number(event.key) - 1].id);
+        press(SECTIONS[Number(event.key) - 1].id);
         return;
       }
       if (file && (event.key === 'ArrowRight' || event.key === 'ArrowLeft')) {
@@ -143,7 +167,7 @@ export default function VaultApp() {
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [closeFile, file, handheld, openFile, phase, skipBoot]);
+  }, [closeFile, file, handheld, openFile, phase, press, skipBoot]);
 
   /* ----------------------------------------------------------- camera */
   const pointer = useRef({ x: 0, y: 0 });
@@ -302,7 +326,7 @@ export default function VaultApp() {
           repos={github.repos}
         />
       ) : (
-        <Dashboard loading={github.loading} onOpen={openFile} repos={github.repos} />
+        <Dashboard loading={github.loading} onOpen={press} repos={github.repos} />
       )
     ) : (
       <BootLog onSkip={skipBoot} step={bootStep} />
@@ -356,6 +380,14 @@ export default function VaultApp() {
               {terminal}
             </div>
           </div>
+          {lamp && (
+            <span
+              aria-hidden="true"
+              className={`vault-lamp is-${BUTTONS[lamp.id].lamp}`}
+              key={lamp.n}
+              style={{ left: BUTTONS[lamp.id].at[0], top: BUTTONS[lamp.id].at[1] }}
+            />
+          )}
           <div
             aria-hidden="true"
             className={`vault-note${phase === 'ready' && !file ? ' is-up' : ''}`}

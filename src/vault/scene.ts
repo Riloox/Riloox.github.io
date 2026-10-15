@@ -1,6 +1,8 @@
 /* Geometry of the painted room. Every number here is in plate pixels: the
    coordinate space of public/vault/room.webp (1536 × 896). */
 
+import type { SectionId } from './sections';
+
 export type Vec2 = readonly [number, number];
 
 export const PLATE = { w: 1536, h: 896 } as const;
@@ -20,6 +22,18 @@ export const DESIGN = { w: 1200, h: 545 } as const;
 export const RESIDENT = { x: 40, y: 471, w: 420, h: 425 } as const;
 
 export const LANTERN: Vec2 = [1478, 408];
+
+/** One painted console button per file, in reading order left to right. */
+export const BUTTONS: Record<SectionId, { at: Vec2; lamp: 'amber' | 'red' }> = {
+  identity: { at: [559, 763], lamp: 'amber' },
+  hostkind: { at: [586, 775], lamp: 'amber' },
+  experience: { at: [825, 723], lamp: 'amber' },
+  projects: { at: [903, 759], lamp: 'amber' },
+  skills: { at: [819, 788], lamp: 'amber' },
+  education: { at: [910, 730], lamp: 'red' },
+  github: { at: [1036, 788], lamp: 'red' },
+  contact: { at: [1186, 801], lamp: 'red' },
+};
 
 /** The sticky note taped to the lower-right bezel (public/vault/postit.webp, 330 × 355). */
 export const NOTE = { x: 1176, y: 626, w: 124, h: 133 } as const;
