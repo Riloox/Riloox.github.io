@@ -1,42 +1,42 @@
 /* Geometry of the painted room. Every number here is in plate pixels: the
-   coordinate space of public/vault/room.webp (1536 × 896). */
+   coordinate space of public/vault/room.webp (1536 × 857). */
 
 import type { SectionId } from './sections';
 
 export type Vec2 = readonly [number, number];
 
-export const PLATE = { w: 1536, h: 896 } as const;
+export const PLATE = { w: 1536, h: 857 } as const;
 
 /** Inner edge of the CRT glass, clockwise from top-left. */
 export const SCREEN_QUAD: readonly [Vec2, Vec2, Vec2, Vec2] = [
-  [271, 148],
-  [1310, 82],
-  [1320, 620],
-  [268, 585],
+  [279, 134],
+  [1303, 70],
+  [1316, 595],
+  [277, 563],
 ];
 
 /** The HTML terminal is authored at this size, then warped onto the quad. */
 export const DESIGN = { w: 1200, h: 545 } as const;
 
 /** The cut-out resident layer and where it sits on the plate. */
-export const RESIDENT = { x: 40, y: 471, w: 420, h: 425 } as const;
+export const RESIDENT = { x: 40, y: 432, w: 420, h: 425 } as const;
 
-export const LANTERN: Vec2 = [1478, 408];
+export const LANTERN: Vec2 = [1474, 386];
 
 /** One painted console button per file, in reading order left to right. */
 export const BUTTONS: Record<SectionId, { at: Vec2; lamp: 'amber' | 'red' }> = {
-  identity: { at: [559, 763], lamp: 'amber' },
-  hostkind: { at: [586, 775], lamp: 'amber' },
-  experience: { at: [825, 723], lamp: 'amber' },
-  projects: { at: [903, 759], lamp: 'amber' },
-  skills: { at: [819, 788], lamp: 'amber' },
-  education: { at: [910, 730], lamp: 'red' },
-  github: { at: [1036, 788], lamp: 'red' },
-  contact: { at: [1186, 801], lamp: 'red' },
+  identity: { at: [563, 737], lamp: 'amber' },
+  hostkind: { at: [588, 750], lamp: 'amber' },
+  experience: { at: [825, 700], lamp: 'amber' },
+  projects: { at: [894, 749], lamp: 'amber' },
+  skills: { at: [820, 762], lamp: 'amber' },
+  education: { at: [912, 704], lamp: 'red' },
+  github: { at: [1021, 786], lamp: 'red' },
+  contact: { at: [1184, 796], lamp: 'red' },
 };
 
-/** The sticky note taped to the lower-right bezel (public/vault/postit.webp, 330 × 355). */
-export const NOTE = { x: 1176, y: 626, w: 124, h: 133 } as const;
+/** The sticky note painted on the lower-right bezel; the hint is handwritten onto it. */
+export const NOTE = { x: 1088, y: 584, w: 112, h: 102, tilt: -3.5 } as const;
 
 export const SCREEN_BOUNDS = (() => {
   const xs = SCREEN_QUAD.map(p => p[0]);

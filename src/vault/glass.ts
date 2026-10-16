@@ -80,12 +80,12 @@ const QUAD_FRAG = /* glsl */ `
     add += g * uPower * roll * vec3(0.03, 0.09, 0.05);
     float sheen = smoothstep(0.28, 0.0, abs(suv.x * 0.55 + suv.y - 0.32)) * (1.0 - suv.y);
     add += g * sheen * 0.022 * vec3(0.75, 1.0, 0.85);
-    float lr = exp(-pow(length((p - vec2(1282.0, 318.0)) / vec2(55.0, 150.0)), 2.0));
+    float lr = exp(-pow(length((p - vec2(1277.0, 296.0)) / vec2(55.0, 150.0)), 2.0));
     add += g * lr * fl * vec3(0.22, 0.12, 0.035);
     add += g * uPower * vec3(0.0, 0.010, 0.005) * (hash(vec2(floor(uTime * 24.0), 3.0)) - 0.3);
 
     /* ---- phosphor light spilling onto the bezel, desk and wall ---- */
-    vec2 over = max(abs(suv - 0.5) - 0.5, 0.0) * vec2(1045.0, 490.0);
+    vec2 over = max(abs(suv - 0.5) - 0.5, 0.0) * vec2(1030.0, 480.0);
     float dpx = length(over);
     float spill = exp(-dpx / 70.0) * 0.12 + exp(-dpx / 300.0) * 0.06;
     // the room takes it fully; his back only catches a little, with no seam at the glass edge

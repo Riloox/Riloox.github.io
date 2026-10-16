@@ -419,7 +419,7 @@ export default function VaultApp() {
           <div
             aria-hidden="true"
             className={`vault-note${phase === 'ready' && !file ? ' is-up' : ''}`}
-            style={{ left: NOTE.x, top: NOTE.y, width: NOTE.w, backgroundImage: `url(${ASSETS}postit.webp)` }}
+            style={{ left: NOTE.x, top: NOTE.y, width: NOTE.w, height: NOTE.h, rotate: `${NOTE.tilt}deg` }}
           >
             <span>click a panel</span>
             <span>1–8 open files</span>
@@ -451,7 +451,7 @@ function HandheldRoom({ onLoad }: { onLoad: () => void }) {
       const scale = Math.max(width / 980, height / PLATE.h);
       // frame the resident's head and the left half of the glass
       const x = Math.min(0, Math.max(width - PLATE.w * scale, width * 0.42 - 470 * scale));
-      const y = Math.min(0, Math.max(height - PLATE.h * scale, height * 0.5 - 430 * scale));
+      const y = Math.min(0, Math.max(height - PLATE.h * scale, height * 0.5 - 410 * scale));
       stage.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
     };
     place();
