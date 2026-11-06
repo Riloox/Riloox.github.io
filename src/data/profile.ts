@@ -48,7 +48,7 @@ export const ui: Record<
     scrollHint: 'scroll',
     sections: {
       work: 'Selected work',
-      workSub: 'Live projects with real users and test coverage.',
+      workSub: 'Products I am building now, and earlier work.',
       experience: 'Experience',
       skills: 'Skills',
       education: 'Education & certs',
@@ -58,7 +58,7 @@ export const ui: Record<
     liveDemo: 'Live demo',
     downloadPage: 'Download page',
     sourceCode: 'Source code',
-    privateRepo: 'Private repo — built for UTEC',
+    privateRepo: 'Private repo',
     watchDemo: 'Watch demo',
     moreGithub: 'More on GitHub',
     moreGithubSub: 'Smaller experiments and utilities.',
@@ -78,7 +78,7 @@ export const ui: Record<
     scrollHint: 'scroll',
     sections: {
       work: 'Proyectos destacados',
-      workSub: 'Proyectos en producción, con tests y usuarios reales.',
+      workSub: 'Productos que estoy construyendo y trabajos anteriores.',
       experience: 'Experiencia',
       skills: 'Skills',
       education: 'Educación y certificaciones',
@@ -88,7 +88,7 @@ export const ui: Record<
     liveDemo: 'Demo en vivo',
     downloadPage: 'Página de descarga',
     sourceCode: 'Código fuente',
-    privateRepo: 'Repo privado — desarrollado para UTEC',
+    privateRepo: 'Repo privado',
     watchDemo: 'Ver demo',
     moreGithub: 'Más en GitHub',
     moreGithubSub: 'Experimentos y utilidades más chicas.',
@@ -119,11 +119,11 @@ export const heroContent: Record<
   }
 > = {
   en: {
-    kicker: 'Backend & AI agent infrastructure — Montevideo, Uruguay · GMT-3',
+    kicker: 'Product engineer · AI products — Montevideo, Uruguay · GMT-3',
     firstName: 'Federico',
     lastName: 'Prunell',
       summary:
-        'Backend engineer building infrastructure that people and AI agents run on. I ship Hostkind, an open-source, self-hosted control plane for long-running processes: supervision, live consoles, schedules, and audit trails. Before that, I was a Software Development Analyst at Bantotal, writing Java services for core banking and resolving 50+ incidents.',
+        'I build products with AI, from a rough idea to something people use. Right now that is Eñe, a Spanish tutor for Korean learners that I co-founded, and AJFit, a coaching app for a fitness coach and their clients. I also made Hostkind, an open-source control plane for long-running processes, and before that I wrote Java services for core banking at Bantotal.',
     marquee: [
       'Java',
       'TypeScript',
@@ -140,11 +140,11 @@ export const heroContent: Record<
     ],
   },
   es: {
-    kicker: 'Backend e infraestructura para agentes de IA — Montevideo, Uruguay · GMT-3',
+    kicker: 'Ingeniero de producto · Productos con IA — Montevideo, Uruguay · GMT-3',
     firstName: 'Federico',
     lastName: 'Prunell',
       summary:
-        'Ingeniero backend que construye la infraestructura sobre la que corren personas y agentes de IA. Desarrollo Hostkind, un panel de control open source y autoalojado para procesos de larga duración: supervisión, consolas en vivo, tareas programadas y auditoría. Antes fui Analista de Desarrollo de Software en Bantotal, escribiendo servicios Java para core bancario y resolviendo más de 50 incidentes. Inglés C2, listo para remoto.',
+        'Construyo productos con IA, desde una idea suelta hasta algo que la gente usa. Hoy eso es Eñe, un tutor de español para coreanos del que soy cofundador, y AJFit, una app de seguimiento para un entrenador personal y sus asesorados. También hice Hostkind, un panel open source para procesos de larga duración, y antes escribí servicios Java para core bancario en Bantotal. Inglés C2, listo para remoto.',
     marquee: [
       'Java',
       'TypeScript',
@@ -240,12 +240,50 @@ export interface Project {
   stack: string[];
   links?: ProjectLink;
   privateRepo?: boolean;
+  /** Screenshot under public/, from demo or seed data only. */
+  image?: { src: string; alt: string };
+  /** Short label for the vault card eyebrow. */
+  kind?: string;
 }
 
 export const projects: Record<LanguageKey, Project[]> = {
   en: [
     {
+      name: 'Eñe',
+      kind: 'Co-founded product',
+      tagline: 'Spanish tutor for Korean learners',
+      description:
+        'A mobile Spanish course for Korean speakers, built with my partner as co-founder. The demo is a short travel lesson with a mascot guide, speech input and an AI tutor that corrects your Spanish and explains why in Korean. The demo is invite-only for now.',
+      highlights: [
+        'AI tutor answers in Korean, with the fix, the rule and one practice exercise',
+        'Separately, a 2B tutor model fine-tuned from Gemma 4 E2B on one laptop GPU: 177/208 vs 123/208 for the stock model on a frozen test set',
+        'Runs on a free Cloudflare Worker, with invite codes and rate limits',
+      ],
+      stack: ['Cloudflare Workers', 'KV', 'Ollama', 'Gemma', 'Python', 'Web Speech API'],
+      links: {
+        demo: 'https://ene-demo.fprunell10.workers.dev/',
+        repo: 'https://github.com/Riloox/gemma-spanish-tutor-for-korean',
+      },
+      image: { src: 'projects/ene.webp', alt: 'Eñe demo: the mascot greets the visitor and asks for an invite code' },
+    },
+    {
+      name: 'AJFit',
+      kind: 'Client build',
+      tagline: 'Coaching app for a fitness coach and their clients',
+      description:
+        'A mobile-first app built for a fitness coach under a revenue-share agreement. Clients log sets, see weekly volume and progress, and send session feedback by message, audio or video. The coach gets one screen that ranks who needs an answer or a nudge.',
+      highlights: [
+        'Coach view sorted by what needs attention: unanswered feedback first, then clients who stopped training',
+        'Progress per exercise and weekly volume per muscle group',
+        'Meal ideas from the ingredients the client has at home',
+      ],
+      stack: ['React', 'TypeScript', 'Hono', 'Cloudflare Workers', 'D1'],
+      image: { src: 'projects/ajfit.webp', alt: 'Four AJFit screens with demo data: coach attention list, finished session, bench press progress chart, session feedback' },
+      privateRepo: true,
+    },
+    {
       name: 'Cleta',
+      kind: 'UTEC capstone',
       tagline: 'Campus bike-sharing platform',
       description:
         'Capstone project: a free bicycle-lending system for the UTEC Fray Bentos campus — mobile app, web admin panel, and a backend integrating Allegion smart locks over BLE. Built by a team of three over 16 weeks of Scrum.',
@@ -260,6 +298,7 @@ export const projects: Record<LanguageKey, Project[]> = {
     },
     {
       name: 'Freecam',
+      kind: 'Java mod',
       tagline: 'Hytale server mod · 3,900+ downloads',
       description:
         'A small server-side Java mod that lets Hytale players detach the camera from their character, adjust movement speed, and return safely to their original state and position.',
@@ -277,7 +316,41 @@ export const projects: Record<LanguageKey, Project[]> = {
   ],
   es: [
     {
+      name: 'Eñe',
+      kind: 'Producto cofundado',
+      tagline: 'Tutor de español para coreanos',
+      description:
+        'Un curso de español en el celular para hablantes de coreano, que hago con mi pareja como cofundadora. La demo es una lección corta de viaje con una mascota, entrada por voz y un tutor de IA que corrige tu español y explica el porqué en coreano. Por ahora la demo es solo con invitación.',
+      highlights: [
+        'El tutor responde en coreano, con la corrección, la regla y un ejercicio',
+        'Aparte, un modelo tutor de 2B ajustado a partir de Gemma 4 E2B en la GPU de una laptop: 177/208 frente a 123/208 del modelo original en un conjunto de prueba reservado',
+        'Corre en un Worker gratuito de Cloudflare, con códigos de invitación y límites de uso',
+      ],
+      stack: ['Cloudflare Workers', 'KV', 'Ollama', 'Gemma', 'Python', 'Web Speech API'],
+      links: {
+        demo: 'https://ene-demo.fprunell10.workers.dev/',
+        repo: 'https://github.com/Riloox/gemma-spanish-tutor-for-korean',
+      },
+      image: { src: 'projects/ene.webp', alt: 'Demo de Eñe: la mascota saluda y pide un código de invitación' },
+    },
+    {
+      name: 'AJFit',
+      kind: 'Proyecto para cliente',
+      tagline: 'App de seguimiento para un entrenador y sus asesorados',
+      description:
+        'Una app mobile-first hecha para un entrenador personal, con un acuerdo de reparto de ingresos. Los asesorados registran series, ven su volumen semanal y su progreso, y mandan feedback de cada sesión por mensaje, audio o video. El entrenador tiene una pantalla que ordena a quién responder o a quién empujar.',
+      highlights: [
+        'Vista del entrenador ordenada por lo que necesita atención: feedback sin responder primero, después quien dejó de entrenar',
+        'Progreso por ejercicio y volumen semanal por grupo muscular',
+        'Ideas de comidas con lo que el asesorado tiene en casa',
+      ],
+      stack: ['React', 'TypeScript', 'Hono', 'Cloudflare Workers', 'D1'],
+      image: { src: 'projects/ajfit.webp', alt: 'Cuatro pantallas de AJFit con datos de ejemplo: lista del entrenador, sesión terminada, progreso en press de banca, feedback por sesión' },
+      privateRepo: true,
+    },
+    {
       name: 'Cleta',
+      kind: 'UTEC capstone',
       tagline: 'Plataforma de bicicletas compartidas',
       description:
         'Proyecto final de grado: un sistema gratuito de préstamo de bicicletas para el campus de UTEC Fray Bentos — app móvil, panel web de administración y un backend que integra candados inteligentes Allegion por BLE. Construido por un equipo de tres en 16 semanas de Scrum.',
@@ -292,6 +365,7 @@ export const projects: Record<LanguageKey, Project[]> = {
     },
     {
       name: 'Freecam',
+      kind: 'Java mod',
       tagline: 'Mod de servidor para Hytale · 3.900+ descargas',
       description:
         'Un pequeño mod server-side en Java que permite separar la cámara del personaje en Hytale, ajustar la velocidad y volver de forma segura al estado y posición originales.',
@@ -471,7 +545,7 @@ export const contact: Record<
   en: {
     email: 'fprunell10@gmail.com',
     blurb:
-      'Open to AI agent infrastructure and backend roles, remote or Montevideo-based.',
+      'Open to product engineering roles and freelance builds, remote.',
     responseTime: 'Usually replies within 24h',
     social: [
       { label: 'GitHub', url: 'https://github.com/Riloox' },
@@ -482,7 +556,7 @@ export const contact: Record<
   es: {
     email: 'fprunell10@gmail.com',
     blurb:
-      'Abierto a roles de infraestructura para agentes de IA y backend, remoto o desde Montevideo.',
+      'Abierto a roles de ingeniería de producto y proyectos freelance, remoto.',
     responseTime: 'Normalmente respondo en 24h',
     social: [
       { label: 'GitHub', url: 'https://github.com/Riloox' },

@@ -468,7 +468,7 @@ function HandheldRoom({ onLoad }: { onLoad: () => void }) {
             <span>Federico</span>
             <span>Prunell</span>
           </p>
-          <p className="hh-crt-role">AI agent infra · Montevideo</p>
+          <p className="hh-crt-role">Product engineer · Montevideo</p>
         </div>
         <img
           alt=""

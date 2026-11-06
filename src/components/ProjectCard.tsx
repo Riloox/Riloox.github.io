@@ -20,6 +20,14 @@ const ProjectCard = ({ project, index, labels }: ProjectCardProps) => {
       <article className="fl-project" style={{ height: '100%' }}>
         <h3 className="fl-project-name">{project.name}</h3>
         <p className="fl-project-tagline">{project.tagline}</p>
+        {project.image ? (
+          <img
+            src={`${import.meta.env.BASE_URL}${project.image.src}`}
+            alt={project.image.alt}
+            loading="lazy"
+            style={{ display: 'block', width: '100%', maxHeight: 360, objectFit: 'contain', margin: '12px 0' }}
+          />
+        ) : null}
         <p className="fl-project-desc">{project.description}</p>
         <ul className="fl-project-highlights">
           {project.highlights.map((highlight) => (

@@ -1253,6 +1253,15 @@ body {
   border: 1px solid var(--g-line);
 }
 
+.v-shot {
+  display: block;
+  width: 100%;
+  max-height: 220px;
+  object-fit: contain;
+  object-position: left top;
+  border: 1px solid var(--g-line);
+}
+
 .v-card h3 {
   margin: 0;
   font: 800 26px/1 var(--display);

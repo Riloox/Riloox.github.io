@@ -11,7 +11,7 @@ const copy = ui.en;
 const h = heroContent.en;
 const featured = hostkind.en;
 const exp = experience.en[0];
-const [cleta, freecam] = projects.en;
+const [ene, ajfit] = projects.en;
 const me = contact.en;
 const cert = certifications.en;
 
@@ -59,7 +59,7 @@ export function SectionBody({ id, repos, loading }: { id: SectionId; repos: Gith
           <dl className="v-kv">
             <div>
               <dt>Role</dt>
-              <dd>AI agent infrastructure · Backend</dd>
+              <dd>Product engineering · AI products</dd>
             </div>
             <div>
               <dt>Base</dt>
@@ -134,11 +134,12 @@ export function SectionBody({ id, repos, loading }: { id: SectionId; repos: Gith
     case 'projects':
       return (
         <div className="v-flow v-cards">
-          {[freecam, cleta].map((project, index) => (
+          {projects.en.map(project => (
             <article className="v-card" key={project.name}>
-              <Eyebrow>{index === 0 ? 'Java mod' : 'UTEC capstone'}</Eyebrow>
+              <Eyebrow>{project.kind}</Eyebrow>
               <h3>{project.name}</h3>
               <p className="v-lede">{project.tagline}</p>
+              {project.image && <img className="v-shot" src={`${import.meta.env.BASE_URL}${project.image.src}`} alt={project.image.alt} loading="lazy" />}
               <p className="v-body">{project.description}</p>
               <ul className="v-list">
                 {project.highlights.slice(0, 2).map(item => (
@@ -147,6 +148,11 @@ export function SectionBody({ id, repos, loading }: { id: SectionId; repos: Gith
               </ul>
               <Chips items={project.stack} />
               <div className="v-actions">
+                {project.links?.demo && (
+                  <a className="v-btn v-btn-fill" href={project.links.demo} target="_blank" rel="noreferrer">
+                    {copy.liveDemo} ↗
+                  </a>
+                )}
                 {project.links?.download && (
                   <a className="v-btn v-btn-fill" href={project.links.download} target="_blank" rel="noreferrer">
                     {copy.downloadPage} ↗

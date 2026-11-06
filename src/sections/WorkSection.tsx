@@ -80,7 +80,7 @@ const WorkSection = ({ language, githubUsername, githubExcludeNames }: WorkSecti
           </article>
         </Reveal>
 
-        {/* Cleta + Freecam */}
+        {/* Eñe, AJFit, Cleta, Freecam */}
         <div className="fl-projects">
           {rest.map((project, i) => (
             <ProjectCard

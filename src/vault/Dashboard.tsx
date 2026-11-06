@@ -9,7 +9,7 @@ import { SECTIONS, type SectionId } from './sections';
 const h = heroContent.en;
 const featured = hostkind.en;
 const job = experience.en[0];
-const [cleta, freecam] = projects.en;
+const [ene, ajfit] = projects.en;
 const me = contact.en;
 const cert = certifications.en;
 const firstSentence = (text: string) => text.split(/(?<=\.)\s/)[0];
@@ -102,8 +102,8 @@ export function Dashboard({
           </Panel>
           <Panel id="projects" onOpen={onOpen} className="t-projects">
             {[
-              { project: cleta, href: cleta.links?.video, label: 'Demo' },
-              { project: freecam, href: freecam.links?.repo, label: 'GitHub' },
+              { project: ene, href: ene.links?.demo, label: 'Demo' },
+              { project: ajfit, href: undefined, label: '' },
             ].map(({ project, href, label }) => (
               <div className="t-proj" key={project.name}>
                 <div className="t-proj-head">
