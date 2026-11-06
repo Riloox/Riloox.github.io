@@ -59,7 +59,7 @@ export function SectionBody({ id, repos, loading }: { id: SectionId; repos: Gith
           <dl className="v-kv">
             <div>
               <dt>Role</dt>
-              <dd>Product engineering · AI products</dd>
+              <dd>Product engineering</dd>
             </div>
             <div>
               <dt>Base</dt>

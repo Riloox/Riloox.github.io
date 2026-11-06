@@ -119,11 +119,11 @@ export const heroContent: Record<
   }
 > = {
   en: {
-    kicker: 'Product engineer · AI products — Montevideo, Uruguay · GMT-3',
+    kicker: 'Product engineer, Montevideo, Uruguay (GMT-3)',
     firstName: 'Federico',
     lastName: 'Prunell',
       summary:
-        'I build products with AI, from a rough idea to something people use. Right now that is Eñe, a Spanish tutor for Korean learners that I co-founded, and AJFit, a coaching app for a fitness coach and their clients. I also made Hostkind, an open-source control plane for long-running processes, and before that I wrote Java services for core banking at Bantotal.',
+        'I like building products that people actually use. Right now that is Eñe, a Spanish tutor for Korean speakers, and AJFit, a training app for a personal trainer and their clients. Before that I made Hostkind and spent 16 months doing backend work at Bantotal.',
     marquee: [
       'Java',
       'TypeScript',
@@ -140,11 +140,11 @@ export const heroContent: Record<
     ],
   },
   es: {
-    kicker: 'Ingeniero de producto · Productos con IA — Montevideo, Uruguay · GMT-3',
+    kicker: 'Ingeniero de producto, Montevideo, Uruguay (GMT-3)',
     firstName: 'Federico',
     lastName: 'Prunell',
       summary:
-        'Construyo productos con IA, desde una idea suelta hasta algo que la gente usa. Hoy eso es Eñe, un tutor de español para coreanos del que soy cofundador, y AJFit, una app de seguimiento para un entrenador personal y sus asesorados. También hice Hostkind, un panel open source para procesos de larga duración, y antes escribí servicios Java para core bancario en Bantotal. Inglés C2, listo para remoto.',
+        'Me gusta construir productos que la gente use. Hoy eso es Eñe, un tutor de español para coreanos, y AJFit, una app para un entrenador personal y sus asesorados. Antes hice Hostkind y pasé 16 meses haciendo backend en Bantotal.',
     marquee: [
       'Java',
       'TypeScript',
@@ -250,10 +250,10 @@ export const projects: Record<LanguageKey, Project[]> = {
   en: [
     {
       name: 'Eñe',
-      kind: 'Co-founded product',
-      tagline: 'Spanish tutor for Korean learners',
+      kind: 'Product',
+      tagline: 'Spanish tutor for Korean speakers',
       description:
-        'A mobile Spanish course for Korean speakers, built with my partner as co-founder. The demo is a short travel lesson with a mascot guide, speech input and an AI tutor that corrects your Spanish and explains why in Korean. The demo is invite-only for now.',
+        'A Spanish tutor for Korean speakers. The demo is a short travel lesson with a mascot, voice input and an AI tutor that explains mistakes in Korean. It is invite only for now.',
       highlights: [
         'AI tutor answers in Korean, with the fix, the rule and one practice exercise',
         'Separately, a 2B tutor model fine-tuned from Gemma 4 E2B on one laptop GPU: 177/208 vs 123/208 for the stock model on a frozen test set',
@@ -268,10 +268,10 @@ export const projects: Record<LanguageKey, Project[]> = {
     },
     {
       name: 'AJFit',
-      kind: 'Client build',
-      tagline: 'Coaching app for a fitness coach and their clients',
+      kind: 'Client project',
+      tagline: 'Training app for a personal trainer',
       description:
-        'A mobile-first app built for a fitness coach under a revenue-share agreement. Clients log sets, see weekly volume and progress, and send session feedback by message, audio or video. The coach gets one screen that ranks who needs an answer or a nudge.',
+        'A training app for a personal trainer and their clients. Clients log workouts, track progress and send feedback after each session, and the trainer sees who needs a reply.',
       highlights: [
         'Coach view sorted by what needs attention: unanswered feedback first, then clients who stopped training',
         'Progress per exercise and weekly volume per muscle group',
@@ -317,10 +317,10 @@ export const projects: Record<LanguageKey, Project[]> = {
   es: [
     {
       name: 'Eñe',
-      kind: 'Producto cofundado',
+      kind: 'Producto',
       tagline: 'Tutor de español para coreanos',
       description:
-        'Un curso de español en el celular para hablantes de coreano, que hago con mi pareja como cofundadora. La demo es una lección corta de viaje con una mascota, entrada por voz y un tutor de IA que corrige tu español y explica el porqué en coreano. Por ahora la demo es solo con invitación.',
+        'Un tutor de español para hablantes de coreano. La demo es una lección corta de viaje con una mascota, entrada por voz y un tutor de IA que explica los errores en coreano. Por ahora es solo con invitación.',
       highlights: [
         'El tutor responde en coreano, con la corrección, la regla y un ejercicio',
         'Aparte, un modelo tutor de 2B ajustado a partir de Gemma 4 E2B en la GPU de una laptop: 177/208 frente a 123/208 del modelo original en un conjunto de prueba reservado',
@@ -336,9 +336,9 @@ export const projects: Record<LanguageKey, Project[]> = {
     {
       name: 'AJFit',
       kind: 'Proyecto para cliente',
-      tagline: 'App de seguimiento para un entrenador y sus asesorados',
+      tagline: 'App para un entrenador personal',
       description:
-        'Una app mobile-first hecha para un entrenador personal, con un acuerdo de reparto de ingresos. Los asesorados registran series, ven su volumen semanal y su progreso, y mandan feedback de cada sesión por mensaje, audio o video. El entrenador tiene una pantalla que ordena a quién responder o a quién empujar.',
+        'Una app para un entrenador personal y sus asesorados. Registran sus entrenamientos, ven su progreso y mandan feedback después de cada sesión, y el entrenador ve a quién responder.',
       highlights: [
         'Vista del entrenador ordenada por lo que necesita atención: feedback sin responder primero, después quien dejó de entrenar',
         'Progreso por ejercicio y volumen semanal por grupo muscular',
@@ -545,7 +545,7 @@ export const contact: Record<
   en: {
     email: 'fprunell10@gmail.com',
     blurb:
-      'Open to product engineering roles and freelance builds, remote.',
+      'Open to remote product roles and freelance work.',
     responseTime: 'Usually replies within 24h',
     social: [
       { label: 'GitHub', url: 'https://github.com/Riloox' },
@@ -556,7 +556,7 @@ export const contact: Record<
   es: {
     email: 'fprunell10@gmail.com',
     blurb:
-      'Abierto a roles de ingeniería de producto y proyectos freelance, remoto.',
+      'Abierto a roles de producto remotos y trabajo freelance.',
     responseTime: 'Normalmente respondo en 24h',
     social: [
       { label: 'GitHub', url: 'https://github.com/Riloox' },
