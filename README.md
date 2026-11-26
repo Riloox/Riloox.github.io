@@ -12,7 +12,7 @@ index.html                     home: intro, work, smaller things, contact
 projects/hostkind.html         Hostkind write-up and demo video
 projects/ene.html              Ene write-up and model results
 projects/ajfit.html            AJFit write-up and demo film
-projects/riloox-pipeline.html  Video pipeline write-up
+projects/cleta.html            Cleta write-up and demo video
 writing/index.html             writing index
 writing/gemma-spanish-tutor.html  the Ene fine-tune write-up
 assets/                        demo film, screenshots, CV images, favicon

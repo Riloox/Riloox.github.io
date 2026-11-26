@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Federico Prunell, product engineer</title>
-    <meta name="description" content="Federico Prunell is a product engineer in Montevideo, Uruguay. Sixteen months of backend work on a core banking platform at Bantotal, plus his own tools: Hostkind, Ene, AJFit and a video pipeline.">
+    <meta name="description" content="Federico Prunell is a product engineer in Montevideo, Uruguay. Sixteen months of backend work on a core banking platform at Bantotal, plus his own tools: Hostkind, Ene, AJFit, and Cleta, a campus bike share he built for his degree.">
     <link rel="canonical" href="https://riloox.github.io/">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
@@ -89,8 +89,8 @@
           desktop build. AGPL-3.0, installers for Windows and Linux.
         </p>
         <p class="meta">
-          <a href="https://github.com/Riloox/hostkind-open">Source</a> ·
-          <a href="https://hostkind.site/">hostkind.site</a> ·
+          <a href="https://github.com/Riloox/hostkind-open">Source</a> -
+          <a href="https://hostkind.site/">hostkind.site</a> -
           <a href="projects/hostkind.html">Full write-up</a>
         </p>
       </article>
@@ -115,9 +115,9 @@
           it scores 177/208 against 123/208 for the stock model.
         </p>
         <p class="meta">
-          <a href="https://github.com/Riloox/gemma-spanish-tutor-for-korean">Source</a> ·
-          <a href="https://ene-demo.fprunell10.workers.dev/">Demo</a> ·
-          <a href="projects/ene.html">Full write-up</a> ·
+          <a href="https://github.com/Riloox/gemma-spanish-tutor-for-korean">Source</a> -
+          <a href="https://ene-demo.fprunell10.workers.dev/">Demo</a> -
+          <a href="projects/ene.html">Full write-up</a> -
           <a href="writing/gemma-spanish-tutor.html">How it was trained</a>
         </p>
       </article>
@@ -146,25 +146,28 @@
       </article>
 
       <article>
-        <h3><a href="projects/riloox-pipeline.html">The Riloox video pipeline</a></h3>
+        <h3><a href="projects/cleta.html">Cleta</a></h3>
         <p>
-          The editing pipeline behind my YouTube channel. A voice-over and a shot
-          list go in, a rendered timeline comes out: cuts on word timings, sound
-          effects and music beds levelled to -16 LUFS, thumbnails built from
-          licensed fonts and my own doodle. The licence rule is the strict part,
-          every asset has to be usable without attribution and without buying
-          anything.
+          A bike share for the UTEC campus in Fray Bentos, which sits 3 km from
+          town. Students sign in with their university account, find a bike on a
+          map, scan the QR on the frame and the phone opens the smart lock over
+          Bluetooth. On the other side there is an admin panel for bikes,
+          stations, users and loans. My final degree project: three people,
+          sixteen weeks.
         </p>
         <p>
-          <strong>The hard part:</strong> landing a sound effect on the exact
-          word of a punchline, and keeping the asset library provably clean.
+          <strong>The hard part:</strong> an Allegion lock with no public
+          documentation for its Bluetooth side, where a byte written out of
+          order does nothing at all and says nothing.
         </p>
         <p class="stack">
-          Python for the build scripts, MLT and melt for rendering, ffmpeg for
-          audio, ImageMagick for thumbnails.
+          React Native and Expo for the Android app, React and TypeScript for
+          the admin panel, Node.js and Express with PostgreSQL for the API, on
+          Google Cloud.
         </p>
         <p class="meta">
-          <a href="projects/riloox-pipeline.html">Full write-up</a>
+          <a href="https://www.youtube.com/watch?v=lo06qph9CIk">Demo video</a> -
+          <a href="projects/cleta.html">Full write-up</a>
         </p>
       </article>
 
@@ -179,22 +182,8 @@
           from a camera.
         </p>
         <p class="meta">
-          <a href="https://www.curseforge.com/hytale/mods/freecam">CurseForge</a> ·
+          <a href="https://www.curseforge.com/hytale/mods/freecam">CurseForge</a> -
           <a href="https://github.com/Riloox/freecam">Source</a>
-        </p>
-      </article>
-
-      <article>
-        <h3>Cleta</h3>
-        <p>
-          My UTEC capstone: a free bicycle lending system for the Fray Bentos
-          campus, with a mobile app, an admin panel and BLE smart locks. I owned
-          the backend: API design, PostgreSQL schema, Google OAuth with revocable
-          JWTs, role checks and the security work. Three people, sixteen weeks of
-          Scrum.
-        </p>
-        <p class="meta">
-          <a href="https://www.youtube.com/watch?v=lo06qph9CIk">Demo video</a>
         </p>
       </article>
 
