@@ -1,61 +1,26 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#050705" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href="https://riloox.github.io/" />
-
-    <title>Federico Prunell — Product Engineer</title>
-    <meta
-      name="description"
-      content="Product engineer building Eñe, a Spanish tutor for Korean speakers, and AJFit, a training app for a personal trainer. Open to remote product roles and freelance work."
-    />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=IBM+Plex+Mono:wght@400;500;600;700&family=Permanent+Marker&display=swap" />
-    <link rel="preload" as="image" href="/vault/room.webp" fetchpriority="high" />
-    <link rel="preload" as="image" href="/vault/resident.webp" />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="profile" />
-    <meta property="og:site_name" content="Federico Prunell" />
-    <meta property="og:url" content="https://riloox.github.io/" />
-    <meta property="og:title" content="Federico Prunell — Product Engineer" />
-    <meta
-      property="og:description"
-      content="Product engineer building Eñe and AJFit. Open to remote product roles and freelance work."
-    />
-    <meta property="og:image" content="https://riloox.github.io/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="profile:first_name" content="Federico" />
-    <meta property="profile:last_name" content="Prunell" />
-    <meta property="profile:username" content="Riloox" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Federico Prunell — Product Engineer" />
-    <meta
-      name="twitter:description"
-      content="Product engineer building Eñe and AJFit."
-    />
-    <meta name="twitter:image" content="https://riloox.github.io/og-image.png" />
-
-    <!-- JSON-LD Person schema -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Federico Prunell, product engineer</title>
+    <meta name="description" content="Federico Prunell is a product engineer in Montevideo, Uruguay. Sixteen months of backend work on a core banking platform at Bantotal, plus his own tools: Hostkind, Ene, AJFit and a video pipeline.">
+    <link rel="canonical" href="https://riloox.github.io/">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Federico Prunell",
         "url": "https://riloox.github.io/",
-        "image": "https://riloox.github.io/og-image.png",
         "jobTitle": "Product Engineer",
         "email": "mailto:fprunell10@gmail.com",
-
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Montevideo",
+          "addressCountry": "UY"
+        },
         "alumniOf": [
           {
             "@type": "CollegeOrUniversity",
@@ -66,43 +31,192 @@
             "name": "Karelia University of Applied Sciences"
           }
         ],
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Montevideo",
-          "addressCountry": "UY"
-        },
         "knowsLanguage": ["en", "es"],
         "sameAs": [
           "https://github.com/Riloox",
           "https://www.linkedin.com/in/federico-prunell-36b684207",
-          "https://www.hackerrank.com/profile/fprunell10"
+          "https://riloox.itch.io/",
+          "https://www.curseforge.com/members/riloox/projects"
         ]
       }
     </script>
   </head>
   <body>
-    <div id="root">
-      <h1>Federico Prunell — Product Engineer</h1>
+    <nav>
+      <span class="here">Federico Prunell</span>
+      <a href="#work">Work</a>
+      <a href="writing/">Writing</a>
+      <a href="#contact">Contact</a>
+      <a href="cv.pdf">CV</a>
+    </nav>
+
+    <main>
+      <h1>Federico Prunell</h1>
+      <p class="kicker">Product engineer, Montevideo, Uruguay</p>
+
       <p>
-        Product engineer building Eñe, a Spanish tutor for Korean speakers, and
-        AJFit, a training app for a personal trainer. Open to remote product
-        roles and freelance work.
+        I build products that people use, which is a lower bar than it sounds
+        and harder than it looks. Sixteen months of that were backend work at
+        Bantotal, on a core banking platform that more than 60 institutions in
+        Latin America run on. The rest has been my own tools: a self-hosted game
+        server panel, a Spanish tutor for Korean speakers, a training app for a
+        personal trainer who pays me for it.
+      </p>
+      <p>
+        I work mostly in TypeScript and Python, with Java and SQL when the job
+        calls for them. I like systems small enough to hold in my head, and I
+        try to write down what did not work, not only what did.
+      </p>
+
+      <h2 id="work">Work</h2>
+
+      <article>
+        <h3><a href="projects/hostkind.html">Hostkind</a></h3>
+        <p>
+          A self-hosted control plane for game servers and other long-running
+          processes. Start, stop, monitor, update and back up servers from one
+          local app, with no cloud account and no external database. Live
+          consoles, metrics, a file manager, scheduled backups, users, roles and
+          an audit log, in one Node.js process.
+        </p>
+        <p>
+          <strong>The hard part:</strong> keeping a single process while
+          Minecraft, Terraria, Valheim and Palworld all install, start and shut
+          down in their own way.
+        </p>
+        <p class="stack">
+          Node.js 22, SQLite for state, React for the panel, Electron for the
+          desktop build. AGPL-3.0, installers for Windows and Linux.
+        </p>
+        <p class="meta">
+          <a href="https://github.com/Riloox/hostkind-open">Source</a> ·
+          <a href="https://hostkind.site/">hostkind.site</a> ·
+          <a href="projects/hostkind.html">Full write-up</a>
+        </p>
+      </article>
+
+      <article>
+        <h3><a href="projects/ene.html">Ene</a></h3>
+        <p>
+          A Spanish tutor for Korean speakers. You write a sentence and ask in
+          Korean whether it is right; it rewrites the sentence, names what
+          changed, explains the rule in Korean and gives you one exercise. The
+          demo runs on a Cloudflare Worker. The tutor behind it is a fine-tune of
+          Gemma 4 E2B, trained on one 12 GB laptop GPU.
+        </p>
+        <p>
+          <strong>The hard part:</strong> getting a 2B model to stop correcting
+          sentences that were already correct, then proving it on a test set it
+          had never seen.
+        </p>
+        <p class="stack">
+          Python and PyTorch for training, Ollama and llama.cpp for running it,
+          Cloudflare Workers and KV for the demo app. On a frozen 208-item set
+          it scores 177/208 against 123/208 for the stock model.
+        </p>
+        <p class="meta">
+          <a href="https://github.com/Riloox/gemma-spanish-tutor-for-korean">Source</a> ·
+          <a href="https://ene-demo.fprunell10.workers.dev/">Demo</a> ·
+          <a href="projects/ene.html">Full write-up</a> ·
+          <a href="writing/gemma-spanish-tutor.html">How it was trained</a>
+        </p>
+      </article>
+
+      <article>
+        <h3><a href="projects/ajfit.html">AJFit</a></h3>
+        <p>
+          A training app for a personal trainer and their clients. Clients log
+          sessions, see progress per exercise and send feedback afterwards. The
+          trainer opens a list sorted by what needs attention: unanswered
+          feedback first, then whoever stopped training. Meal ideas come from
+          what the client already has at home.
+        </p>
+        <p>
+          <strong>The hard part:</strong> making the coach's screen useful in
+          ten seconds, when the honest answer is a sorted list of who needs a
+          reply.
+        </p>
+        <p class="stack">
+          React and TypeScript, Hono on Cloudflare Workers, D1 for the database.
+          Private repo, paying client.
+        </p>
+        <p class="meta">
+          <a href="projects/ajfit.html">Full write-up</a>
+        </p>
+      </article>
+
+      <article>
+        <h3><a href="projects/riloox-pipeline.html">The Riloox video pipeline</a></h3>
+        <p>
+          The editing pipeline behind my YouTube channel. A voice-over and a shot
+          list go in, a rendered timeline comes out: cuts on word timings, sound
+          effects and music beds levelled to -16 LUFS, thumbnails built from
+          licensed fonts and my own doodle. The licence rule is the strict part,
+          every asset has to be usable without attribution and without buying
+          anything.
+        </p>
+        <p>
+          <strong>The hard part:</strong> landing a sound effect on the exact
+          word of a punchline, and keeping the asset library provably clean.
+        </p>
+        <p class="stack">
+          Python for the build scripts, MLT and melt for rendering, ffmpeg for
+          audio, ImageMagick for thumbnails.
+        </p>
+        <p class="meta">
+          <a href="projects/riloox-pipeline.html">Full write-up</a>
+        </p>
+      </article>
+
+      <h2>Smaller things</h2>
+
+      <article>
+        <h3>Freecam</h3>
+        <p>
+          A server-side Java mod for Hytale that detaches the camera from the
+          character, with adjustable speed and a safe return to the original
+          state. 3,900+ downloads on CurseForge, which is more than I expected
+          from a camera.
+        </p>
+        <p class="meta">
+          <a href="https://www.curseforge.com/hytale/mods/freecam">CurseForge</a> ·
+          <a href="https://github.com/Riloox/freecam">Source</a>
+        </p>
+      </article>
+
+      <article>
+        <h3>Cleta</h3>
+        <p>
+          My UTEC capstone: a free bicycle lending system for the Fray Bentos
+          campus, with a mobile app, an admin panel and BLE smart locks. I owned
+          the backend: API design, PostgreSQL schema, Google OAuth with revocable
+          JWTs, role checks and the security work. Three people, sixteen weeks of
+          Scrum.
+        </p>
+        <p class="meta">
+          <a href="https://www.youtube.com/watch?v=lo06qph9CIk">Demo video</a>
+        </p>
+      </article>
+
+      <h2 id="contact">Contact</h2>
+      <p>
+        Email is the reliable one:
+        <a href="mailto:fprunell10@gmail.com">fprunell10@gmail.com</a>. I am in
+        Montevideo (GMT-3) and I answer.
       </p>
       <ul>
-        <li><a href="mailto:fprunell10@gmail.com">fprunell10@gmail.com</a></li>
         <li><a href="https://github.com/Riloox">GitHub</a></li>
         <li><a href="https://www.linkedin.com/in/federico-prunell-36b684207">LinkedIn</a></li>
-        <li><a href="/hostkind.html">Hostkind project page</a></li>
+        <li><a href="https://riloox.itch.io/">itch.io</a></li>
+        <li><a href="https://www.curseforge.com/members/riloox/projects">CurseForge</a></li>
+        <!-- TODO(socials): add the YouTube channel URL once confirmed. The handle @riloox belongs to an unrelated channel, so it is not linked here. -->
+        <li>CV: <a href="cv.pdf">English</a>, <a href="cv-es.pdf">Spanish</a></li>
       </ul>
-    </div>
-    <noscript>
-      <p>Contact: <a href="mailto:fprunell10@gmail.com">fprunell10@gmail.com</a></p>
-      <p>
-        <a href="https://github.com/Riloox">GitHub</a> ·
-        <a href="https://hostkind.site/">Hostkind</a> ·
-        <a href="/hostkind.html">About Hostkind</a>
-      </p>
-    </noscript>
-    <script type="module" src="/src/main-vault.tsx"></script>
+    </main>
+
+    <footer>
+      Last updated November 2026. Hand-written HTML and one small stylesheet, no
+      build step. <a href="sitemap.xml">Sitemap</a>.
+    </footer>
   </body>
 </html>
