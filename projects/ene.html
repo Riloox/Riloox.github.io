@@ -6,6 +6,18 @@
     <title>Ene, a Spanish tutor for Korean speakers</title>
     <meta name="description" content="Ene is a Spanish tutor for Korean speakers: a Cloudflare Worker demo and a Gemma 4 E2B fine-tune trained on one 12 GB laptop GPU. 177/208 against 123/208 for the stock model on a frozen test set.">
     <link rel="canonical" href="https://riloox.github.io/projects/ene.html">
+    <meta property="og:title" content="Ene, a Spanish tutor for Korean speakers">
+    <meta property="og:description" content="A Gemma 4 E2B fine-tune that corrects Spanish and explains the rule in Korean, 177/208 against 123/208 for the stock model. The demo is invite only; ask and I will send a code.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://riloox.github.io/projects/ene.html">
+    <meta property="og:image" content="https://riloox.github.io/assets/ene-demo.webp">
+    <meta property="og:image:width" content="520">
+    <meta property="og:image:height" content="933">
+    <meta property="og:site_name" content="Federico Prunell">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Ene, a Spanish tutor for Korean speakers">
+    <meta name="twitter:description" content="A Gemma 4 E2B fine-tune that corrects Spanish and explains the rule in Korean. The demo is invite only; ask and I will send a code.">
+    <meta name="twitter:image" content="https://riloox.github.io/assets/ene-demo.webp">
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../style.css">
   </head>
@@ -52,6 +64,16 @@
         Gemma 4 E2B, a 2B model, trained on one 12 GB laptop GPU and served
         locally through Ollama.
       </p>
+      <p>
+        The demo has no public link. It sits behind an invite code, and I hand
+        those out by hand. If you want to try it, email me and I will send you
+        one, usually the same day.
+      </p>
+
+      <figure>
+        <img src="../assets/ene-demo.webp" alt="The Ene app asking for an invite code, with the mascot behind it" width="520" height="933">
+        <figcaption>The first screen without a code. This is as far as the demo goes for anyone I have not invited.</figcaption>
+      </figure>
 
       <h2>What was actually hard</h2>
       <p>
@@ -114,7 +136,7 @@
       <h2>Links</h2>
       <ul>
         <li><a href="https://github.com/Riloox/gemma-spanish-tutor-for-korean">Source and training code</a>, MIT for the code</li>
-        <li><a href="https://ene-demo.fprunell10.workers.dev/">The demo app</a>, invite only</li>
+        <li>The demo app is invite only and has no public link. <a href="mailto:fprunell10@gmail.com">Email me</a> and I will send a code.</li>
         <li><a href="https://github.com/Riloox/ollama-rubric">ollama-rubric</a>, the judge and disagreement CLI extracted from this project</li>
         <li><a href="../writing/gemma-spanish-tutor.html">Longer write-up: how the fine-tune was built</a></li>
       </ul>
