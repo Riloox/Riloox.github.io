@@ -63,25 +63,10 @@
         GCP. I wrote 426 backend commits: API, Prisma schema, revocable JWTs,
         roles, and the lock service.
       </p>
-
-      <h2>Hard parts</h2>
-      <ul>
-        <li>
-          <strong>Undocumented BLE lock:</strong> Allegion AXA eRL with 24-hour
-          KeySafe Cloud passkeys, dash-split base64 GATT writes, silent
-          failures, and raw notify bytes <code>0,0</code> (open) and
-          <code>8,0</code> (lever free).
-        </li>
-        <li>
-          <strong>Late hardware:</strong> a two-month university NDA delayed
-          physical lock testing until the final sprints.
-        </li>
-        <li>
-          <strong>Loan rules:</strong> one active loan per user, a 120-minute
-          weekly quota reset Sunday at midnight, and a 20-minute warning
-          notification.
-        </li>
-      </ul>
+      <p>
+        Loans enforce one active bike per user, a 120-minute weekly quota reset
+        Sunday at midnight, and a 20-minute warning notification.
+      </p>
 
       <h2>Public site</h2>
       <p>
