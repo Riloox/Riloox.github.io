@@ -68,20 +68,11 @@
       <p class="kicker">Product engineer, Montevideo, Uruguay</p>
 
       <p>
-        I build products that people use, which is a lower bar than it sounds
-        and harder than it looks. Sixteen months of that were backend work at
-        Bantotal, on a core banking platform that more than 60 institutions in
-        Latin America run on. The rest has been my own tools: a self-hosted game
-        server panel, a Spanish tutor for Korean speakers, a training app for a
-        personal trainer who pays me for it.
-      </p>
-      <p>
-        I work mostly in TypeScript and Python, with Java and SQL when the job
-        calls for them. I like systems small enough to hold in my head, and I
-        try to write down what did not work, not only what did.
+        TypeScript, Python, Java, SQL. Sixteen months on Bantotal's core
+        banking backend (60+ banks in LatAm).
       </p>
       <p class="meta">
-        Open to remote work, as an employee, freelance or contractor.
+        Open to remote roles, freelance, or contract.
       </p>
 
       <h2 id="work">Work</h2>
@@ -89,103 +80,62 @@
       <article>
         <h3><a href="projects/hostkind.html">Hostkind</a></h3>
         <p>
-          A self-hosted control plane for game servers and other long-running
-          processes. Start, stop, monitor, update and back up servers from one
-          local app, with no cloud account and no external database. Live
-          consoles, metrics, a file manager, scheduled backups, users, roles and
-          an audit log, in one Node.js process.
-        </p>
-        <p>
-          <strong>The hard part:</strong> keeping a single process while
-          Minecraft, Terraria, Valheim and Palworld all install, start and shut
-          down in their own way.
+          Self-hosted game server panel in one Node.js process: live consoles,
+          metrics, file manager, verified backups, and roles. No cloud account.
         </p>
         <p class="stack">
-          Node.js 22, SQLite for state, React for the panel, Electron for the
-          desktop build. AGPL-3.0, installers for Windows and Linux.
+          Node.js 22, SQLite, React, Electron. AGPL-3.0.
         </p>
         <p class="meta">
           <a href="https://github.com/Riloox/hostkind-open">Source</a> -
           <a href="https://hostkind.site/">hostkind.site</a> -
-          <a href="projects/hostkind.html">Full write-up</a>
+          <a href="projects/hostkind.html">Write-up</a>
         </p>
       </article>
 
       <article>
         <h3><a href="projects/ene.html">Ene</a></h3>
         <p>
-          A Spanish tutor for Korean speakers. You write a sentence and ask in
-          Korean whether it is right; it rewrites the sentence, names what
-          changed, explains the rule in Korean and gives you one exercise. The
-          demo runs on a Cloudflare Worker, invite only, and there is no public
-          link to it. If you want a code, email me and I will send one; I answer
-          quick. The tutor behind it is a fine-tune of Gemma 4 E2B, trained on
-          one 12 GB laptop GPU.
-        </p>
-        <p>
-          <strong>The hard part:</strong> getting a 2B model to stop correcting
-          sentences that were already correct, then proving it on a test set it
-          had never seen.
+          Spanish tutor for Korean speakers on a fine-tuned Gemma 4 E2B (177/208
+          vs 123/208 stock). Invite-only demo; email for a code.
         </p>
         <p class="stack">
-          Python and PyTorch for training, Ollama and llama.cpp for running it,
-          Cloudflare Workers and KV for the demo app. On a frozen 208-item set
-          it scores 177/208 against 123/208 for the stock model.
+          PyTorch, Ollama, Cloudflare Workers, KV.
         </p>
         <p class="meta">
           <a href="https://github.com/Riloox/gemma-spanish-tutor-for-korean">Source</a> -
-          <a href="projects/ene.html">Full write-up</a> -
-          <a href="writing/gemma-spanish-tutor.html">How it was trained</a>
+          <a href="projects/ene.html">Write-up</a> -
+          <a href="writing/gemma-spanish-tutor.html">Training notes</a>
         </p>
       </article>
 
       <article>
         <h3><a href="projects/ajfit.html">AJFit</a></h3>
         <p>
-          A training app for a personal trainer and their clients. Clients log
-          sessions, see progress per exercise and send feedback afterwards. The
-          trainer opens a list sorted by what needs attention: unanswered
-          feedback first, then whoever stopped training. Meal ideas come from
-          what the client already has at home.
-        </p>
-        <p>
-          <strong>The hard part:</strong> making the coach's screen useful in
-          ten seconds, when the honest answer is a sorted list of who needs a
-          reply.
+          Training app for a personal trainer and his clients. Clients log
+          workouts and feedback; the coach gets one list of who needs a reply.
         </p>
         <p class="stack">
-          React and TypeScript, Hono on Cloudflare Workers, D1 for the database.
-          Private repo, paying client.
+          React, TypeScript, Hono, Cloudflare Workers, D1. Paying client.
         </p>
         <p class="meta">
-          <a href="projects/ajfit.html">Full write-up</a>
+          <a href="projects/ajfit.html">Write-up</a>
         </p>
       </article>
 
       <article>
         <h3><a href="projects/cleta.html">Cleta</a></h3>
         <p>
-          A bike share for the UTEC campus in Fray Bentos, which sits 3 km from
-          town. Students sign in with their university account, find a bike on a
-          map, scan the QR on the frame and the phone opens the smart lock over
-          Bluetooth. On the other side there is an admin panel for bikes,
-          stations, users and loans. My final degree project: three people,
-          sixteen weeks.
-        </p>
-        <p>
-          <strong>The hard part:</strong> an Allegion lock with no public
-          documentation for its Bluetooth side, where a byte written out of
-          order does nothing at all and says nothing.
+          Campus bike share for UTEC Fray Bentos. Android app opens Allegion
+          smart locks over Bluetooth, with an admin panel and Express API.
         </p>
         <p class="stack">
-          React Native and Expo for the Android app, React and TypeScript for
-          the admin panel, Node.js and Express with PostgreSQL for the API, on
-          Google Cloud.
+          React Native, React, Node.js, PostgreSQL, GCP. Final degree project.
         </p>
         <p class="meta">
           <a href="https://cleta.app/">cleta.app</a> -
-          <a href="https://www.youtube.com/watch?v=lo06qph9CIk">Demo video</a> -
-          <a href="projects/cleta.html">Full write-up</a>
+          <a href="https://www.youtube.com/watch?v=lo06qph9CIk">Demo</a> -
+          <a href="projects/cleta.html">Write-up</a>
         </p>
       </article>
 
@@ -194,10 +144,8 @@
       <article>
         <h3>Freecam</h3>
         <p>
-          A server-side Java mod for Hytale that detaches the camera from the
-          character, with adjustable speed and a safe return to the original
-          state. 3,900+ downloads on CurseForge, which is more than I expected
-          from a camera.
+          Server-side Java mod for Hytale that detaches the camera. 3,900+
+          downloads on CurseForge.
         </p>
         <p class="meta">
           <a href="https://www.curseforge.com/hytale/mods/freecam">CurseForge</a> -
@@ -207,9 +155,7 @@
 
       <h2 id="contact">Contact</h2>
       <p>
-        Email is the reliable one:
-        <a href="mailto:fprunell10@gmail.com">fprunell10@gmail.com</a>. I am in
-        Montevideo (GMT-3) and I answer.
+        <a href="mailto:fprunell10@gmail.com">fprunell10@gmail.com</a> - Montevideo (GMT-3)
       </p>
       <ul>
         <li><a href="https://github.com/Riloox">GitHub</a></li>

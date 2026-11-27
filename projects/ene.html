@@ -33,8 +33,8 @@
     <main>
       <h1>Ene</h1>
       <p class="kicker">
-        A Spanish tutor for Korean speakers. A local 2B model fine-tuned from
-        Gemma 4 E2B, plus a small demo app. Written Eñe in Spanish.
+        Spanish tutor for Korean speakers. Local Gemma 4 E2B fine-tune plus an
+        invite-only Cloudflare Worker app. Written Eñe in Spanish.
       </p>
 
       <figure>
@@ -43,102 +43,54 @@
              of the app once one exists. -->
         <img src="../assets/gemma-tutor-demo.gif" alt="Terminal recording: the tutor fixes a conditional sentence and leaves a correct one alone" width="720" height="420">
         <figcaption>
-          The v4 model in <code>ollama run</code>, at real speed on a laptop GPU.
-          Typing is simulated.
+          v4 in <code>ollama run</code> on a laptop GPU (typing simulated).
         </figcaption>
       </figure>
 
-      <h2>Why it exists</h2>
+      <h2>What it is</h2>
       <p>
-        Learning Spanish as a Korean speaker has a specific problem: the
-        questions you want to ask are about grammar, and the answers you find are
-        written in English or in Spanish you cannot read yet. The version I
-        wanted was simple. Write a sentence, ask in Korean if it sounds right,
-        get the corrected sentence, a short note on what changed, the rule behind
-        it in Korean, and one exercise.
+        Write a Spanish sentence and ask in Korean if it is right. Ene rewrites
+        it, names the change, explains the rule in Korean, and gives one
+        exercise.
       </p>
       <p>
-        Ene has two halves. The app is a short travel lesson with a mascot, voice
-        input through the Web Speech API, invite codes and rate limits, running on
-        a free Cloudflare Worker with KV. The tutor behind it is a fine-tune of
-        Gemma 4 E2B, a 2B model, trained on one 12 GB laptop GPU and served
-        locally through Ollama.
-      </p>
-      <p>
-        The demo has no public link. It sits behind an invite code, and I hand
-        those out by hand. If you want to try it, email me and I will send you
-        one, usually the same day.
+        The demo runs on Cloudflare Workers and KV with Web Speech input and
+        invite codes (email for one). The model is a Gemma 4 E2B QLoRA fine-tune
+        trained on a 12 GB laptop GPU and served via Ollama.
       </p>
 
       <figure>
         <img src="../assets/ene-demo.webp" alt="The Ene app asking for an invite code, with the mascot behind it" width="520" height="933">
-        <figcaption>The first screen without a code. This is as far as the demo goes for anyone I have not invited.</figcaption>
+        <figcaption>Invite gate on the demo app.</figcaption>
       </figure>
 
-      <h2>What was actually hard</h2>
+      <h2>Results and trade-offs</h2>
+      <ul>
+        <li>
+          <strong>Scores:</strong> 177/208 vs 123/208 stock on a frozen 208-item
+          set, mostly by leaving correct sentences alone; later round 181/208 vs
+          158 stock under a blind 26B judge.
+        </li>
+        <li>
+          <strong>What did not work:</strong> GRPO added +2 items (noise)
+          because the reward could not grade Korean explanations.
+        </li>
+        <li>
+          <strong>Limits:</strong> text-only (llama.cpp drops vision and audio
+          encoders); Korean explanations are judge-checked awaiting native
+          calibration.
+        </li>
+      </ul>
       <p>
-        Training the model was the easy half. Measuring it was the hard one. On
-        the first frozen set, 208 items split evenly between sentences with real
-        errors and sentences that were already correct, the stock model scored
-        123. The fine-tuned v4 scored 177, which looks like a large jump until you
-        look at where it came from: the stock model rewrote two out of three
-        correct sentences, and most of the gain was it learning to leave them
-        alone. On the error half it actually trailed the stock model, 81 against
-        90, p=0.064.
-      </p>
-      <p>
-        The rounds that failed are more useful than the one that worked. SFT
-         taught the model the format quickly, and it started praising wrong
-         sentences in that format. GRPO on top of v4 added nothing measurable,
-        179 against 177, p=0.75, after a night of training. The fix that did work
-        was less clever: a rewrite-first prompt, teacher-written items for the
-        cases the model kept getting wrong, and a test set frozen before training
-        so the numbers could not drift with it.
-      </p>
-      <p>
-        Then the judge problem appeared. A 2B model can produce the right
-        correction and the wrong explanation, and string matching will not catch
-        it. I built a separate judge around a blind 26B model, which caught
-        things like translating <code>perros</code> as street cats when confirming
-        a sentence was correct, and calling <code>pierdas</code> an infinitive. When
-        all three models were scored again on the later set, the mechanical 184
-        for the last round became 181 with the judge, 95% interval 81.8% to
-        90.9%. The honest reading is that the 184 was a little optimistic.
-      </p>
-      <p>
-        The rest was plumbing: QLoRA on 12 GB, merge, convert to GGUF, quantise
-        to Q4_K_M, import into Ollama. llama.cpp's converter drops Gemma 4's
-        vision and audio encoders, so this is a text tutor whether I like it or
-        not.
-      </p>
-
-      <h2>What I'd change</h2>
-      <p>
-        I would build the frozen test set and the judge before the first training
-        run, not after the fourth. Two of the rounds I spent were chasing a
-        number that the evaluation setup could not measure properly, and the
-        judge changed the ranking of the models when it arrived.
-      </p>
-      <p>
-        I would skip GRPO entirely for this task. It cost a night per round and
-        moved the score by two items, which is noise. The reward was checking the
-        verdict and the rewritten Spanish, so it could never fix the part that
-        was actually wrong, which was the explanation.
-      </p>
-      <p>
-        And I would get a Korean speaker involved earlier. The explanations are
-        in Korean, I do not speak Korean, and the blind judge is a proxy, not a
-        replacement. There is a 30-item calibration set waiting for a native
-        speaker to label it. Until that happens, the Korean quality is checked by
-        a model, and I say so instead of pretending otherwise.
+        Full details in <a href="../writing/gemma-spanish-tutor.html">the training write-up</a>.
       </p>
 
       <h2>Links</h2>
       <ul>
-        <li><a href="https://github.com/Riloox/gemma-spanish-tutor-for-korean">Source and training code</a>, MIT for the code</li>
-        <li>The demo app is invite only and has no public link. <a href="mailto:fprunell10@gmail.com">Email me</a> and I will send a code.</li>
-        <li><a href="https://github.com/Riloox/ollama-rubric">ollama-rubric</a>, the judge and disagreement CLI extracted from this project</li>
-        <li><a href="../writing/gemma-spanish-tutor.html">Longer write-up: how the fine-tune was built</a></li>
+        <li><a href="https://github.com/Riloox/gemma-spanish-tutor-for-korean">Source and training code</a> (MIT)</li>
+        <li><a href="mailto:fprunell10@gmail.com">Email me</a> for an invite code</li>
+        <li><a href="https://github.com/Riloox/ollama-rubric">ollama-rubric</a>, judge CLI</li>
+        <li><a href="../writing/gemma-spanish-tutor.html">Training write-up</a></li>
       </ul>
     </main>
 
